@@ -1,3 +1,5 @@
+from typing import List
+
 # Brute Force
 class Solution_Brute:
     def removeDuplicates(self, nums: List[int]) -> int:

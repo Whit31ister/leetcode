@@ -14,7 +14,7 @@
 # Good complexity
 
 class Solution:
-    def containsDuplicate(self, nums: nums[int]) -> bool:
+    def containsDuplicate(self, nums: list[int]) -> bool:
         length_list = len(nums)
         length_set = len(set(nums))
         if length_list == length_set:
