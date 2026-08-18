@@ -3,7 +3,8 @@ from typing import List
 #Brute Force Sol
 class Solution_Brute:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
-        
+        if not nums:
+            return 0
         
 #Local Testing
 sol_brute = Solution_Brute()
