@@ -48,7 +48,7 @@ void explainVector(){
 }
 
 
-// Main
+// Main func
 int main(){
     explainPair();
     return 0;
