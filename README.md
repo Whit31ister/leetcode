@@ -1,6 +1,6 @@
 # Leetcode Solutions
 
-Repository for tracking and recording Leetcode problem solutions implemented in Python and C++.
+Repository for tracking and recording Leetcode problem solutions implemented in Python, C++, and Java.
 
 ## Overview
 
@@ -19,6 +19,11 @@ This repository contains solutions to Leetcode problems organized by topic and p
   - Includes both brute force and optimal solutions
   - Uses standard C++ data structures (vector, unordered_set, unordered_map)
 
+### Java Solutions
+- **Java/Array/** - Array and list manipulation problems (Java implementations)
+  - Parallel implementations of the Python and C++ array problems
+  - Uses Java arrays, collections, sorting, hash maps, sets, and priority queues
+
 ### Documentation
 - **[notes/](notes/README.md)** - DSA, C++, and LeetCode study notes
   - [DSA Fundamentals](notes/dsa-fundamentals.md) - Complexity, data structures, invariants, and graph traversal
@@ -26,6 +31,7 @@ This repository contains solutions to Leetcode problems organized by topic and p
   - [Sorting Algorithms](notes/sorting-algorithms.md) - Sorting complexity, custom comparators, and sorting patterns
   - [Problem-Solving Patterns](notes/problem-solving-patterns.md) - Hashing, two pointers, sliding windows, DP, and backtracking
   - [LeetCode C++ Reference](notes/leetcode-cpp-reference.md) - Templates, safe arithmetic, debugging, and test cases
+  - [Java LeetCode Reference](notes/java-reference.md) - Collections, arrays, heaps, sorting, and Java-specific tips
   - Big-O examples and complexity analysis resources
 
 - **README.md** - Documentation and repository overview
@@ -35,10 +41,13 @@ This repository contains solutions to Leetcode problems organized by topic and p
 Solution files follow the format:
 - **Python:** `[problem_number] [problem_title].py`
 - **C++:** `[problem_number]_[problem_title].cpp`
+- **Java:** `[problem_number]_[problem_title].java`
 
 Examples:
 - `15 3sums.py` / `15_3Sum.cpp` - Leetcode problem 15 (3Sum)
+- `15_3Sum.java` - Leetcode problem 15 (3Sum)
 - `268 Missing number.py` / `268_Missing_Number.cpp` - Leetcode problem 268 (Missing Number)
+- `268_Missing_Number.java` - Leetcode problem 268 (Missing Number)
 - `271 Contains duplicate.py` / `271_Contains_Duplicate.cpp` - Leetcode problem 271 (Contains Duplicate)
 
 ## Usage
@@ -51,14 +60,19 @@ Examples:
 - Includes standard `#include` headers and can be compiled with any modern C++ compiler
 - Example: `g++ -std=c++17 -o solution 15_3Sum.cpp`
 
-The [notes collection](notes/README.md) provides supporting material for understanding algorithm complexity, C++ STL, sorting, reusable problem-solving patterns, and performance across both languages.
+**Java Solutions:**
+- Each Java file contains a LeetCode-compatible `Solution` class and may include brute-force or alternative variants
+- Compile a solution independently with `javac -d out Java/Array/15_3Sum.java`
+- Java solutions use standard library classes such as `HashMap`, `HashSet`, `ArrayList`, and `PriorityQueue`
+
+The [notes collection](notes/README.md) provides supporting material for understanding algorithm complexity, C++ STL, Java collections, sorting, reusable problem-solving patterns, and performance across all three languages.
 
 ## Suggested Workflow
 
 1. Start with the relevant problem in the [problem list](#problem-list).
 2. Read the constraints and identify the likely pattern.
 3. Review the matching [DSA notes](notes/dsa-fundamentals.md) or [problem-solving pattern](notes/problem-solving-patterns.md).
-4. Use the [C++ STL dictionary](notes/cpp-stl.md) and [C++ reference](notes/leetcode-cpp-reference.md) while implementing.
+4. Use the [C++ STL dictionary](notes/cpp-stl.md), [Java reference](notes/java-reference.md), or [C++ reference](notes/leetcode-cpp-reference.md) while implementing.
 5. Test edge cases and record the final time and space complexity.
 
 
