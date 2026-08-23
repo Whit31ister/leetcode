@@ -20,7 +20,7 @@ auto init = []() {
     return 0;
 }();
 
-// Common Data Structures for Local Testing
+// Data Structures for Local Compilation
 struct ListNode {
     int val;
     ListNode *next;
@@ -38,19 +38,42 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+// ==========================================
+// 1. BRUTE FORCE SOLUTION
+// Time Complexity:  O(N^2)
+// Space Complexity: O(1)
+// ==========================================
+class SolutionBrute {
+public:
+    int solve(vector<int>& nums) {
+        
+        return {};
+    }
+};
+
+// ==========================================
+// 2. OPTIMAL SOLUTION (Submit to LeetCode)
+// Time Complexity:  O(N)
+// Space Complexity: O(1)
+// ==========================================
 class Solution {
 public:
-    void solve(vector<int>& nums) {
+    int solve(vector<int>& nums) {
         
+        return {};
     }
 };
 
 #ifndef ONLINE_JUDGE
 int main() {
-    Solution sol;
-    // Example Test Case:
+    SolutionBrute bruteSol;
+    Solution optSol;
+
+    // Example Local Test
     // vector<int> nums = {1, 2, 3};
-    // cout << sol.solve(nums) << endl;
+    // cout << "Brute Force Result: " << bruteSol.solve(nums) << endl;
+    // cout << "Optimal Result:     " << optSol.solve(nums) << endl;
+
     return 0;
 }
 #endif
