@@ -70,6 +70,13 @@ void explainVector(){
         cout << it << " ";
     }
 
+    // { 10, 20 , 30, 40, 50 }
+    v.erase(v.begin() + 1, v.begin() + 3); // Erase 20 and 30
+
+    for (auto it : v){
+        cout << it << " ";
+    }
+
 
 }
 
