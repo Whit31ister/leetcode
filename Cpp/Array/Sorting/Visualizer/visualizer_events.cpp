@@ -78,8 +78,8 @@ namespace Sorting
         constexpr float firstButtonY = 150.0F;
         constexpr float buttonHeight = 64.0F;
         constexpr float buttonGap = 16.0F;
-        constexpr float sliderStartX = 600.0F;
-        constexpr float sliderEndX = 1000.0F;
+        constexpr float sliderStartX = 980.0F;
+        constexpr float sliderEndX = 1380.0F;
         std::string arraySizeText = std::to_string(arraySize);
         bool editingArraySize = false;
         bool draggingArraySize = false;
@@ -137,7 +137,8 @@ namespace Sorting
                     else if (!editingArraySize)
                     {
                         const auto number = static_cast<int>(key->code) - static_cast<int>(sf::Keyboard::Key::Num1) + 1;
-                        if (number >= 1 && number <= 5) return number;
+                        if (number >= 1 && number <= 9) return number;
+                        if (key->code == sf::Keyboard::Key::Num0) return 10;
                     }
                 }
                 else if (const auto* text = event->getIf<sf::Event::TextEntered>())
@@ -149,12 +150,13 @@ namespace Sorting
                     if (mouse->button != sf::Mouse::Button::Left) continue;
                     const float x = static_cast<float>(mouse->position.x);
                     const float y = static_cast<float>(mouse->position.y);
-                    for (int index = 0; index < 5; ++index)
+                    for (int index = 0; index < 10; ++index)
                     {
-                        const float buttonY = firstButtonY + static_cast<float>(index) * (buttonHeight + buttonGap);
-                        if (x >= 40.0F && x <= 460.0F && y >= buttonY && y <= buttonY + buttonHeight) { updateArraySize(); return index + 1; }
+                        const float buttonX = index < 5 ? 40.0F : 430.0F;
+                        const float buttonY = firstButtonY + static_cast<float>(index % 5) * (buttonHeight + buttonGap);
+                        if (x >= buttonX && x <= buttonX + 350.0F && y >= buttonY && y <= buttonY + buttonHeight) { updateArraySize(); return index + 1; }
                     }
-                    if (x >= 520.0F && x <= 960.0F && y >= 215.0F && y <= 275.0F) editingArraySize = true;
+                    if (x >= 860.0F && x <= 1320.0F && y >= 215.0F && y <= 275.0F) editingArraySize = true;
                     else if (x >= sliderStartX - 20.0F && x <= sliderEndX + 20.0F && y >= 340.0F && y <= 370.0F)
                     {
                         draggingArraySize = true;
@@ -175,11 +177,11 @@ namespace Sorting
                         draggingMaxValue = true;
                         updateSlider(x, y);
                     }
-                    else if (x >= 520.0F && x <= 740.0F && y >= 735.0F && y <= 790.0F)
+                    else if (x >= 860.0F && x <= 1080.0F && y >= 735.0F && y <= 790.0F)
                     {
                         randomizeSize = !randomizeSize;
                     }
-                    else if (x >= 760.0F && x <= 960.0F && y >= 735.0F && y <= 790.0F)
+                    else if (x >= 1100.0F && x <= 1300.0F && y >= 735.0F && y <= 790.0F)
                     {
                         soundEnabled = !soundEnabled;
                     }
@@ -209,25 +211,27 @@ namespace Sorting
                     if (event.key.code == sf::Keyboard::Escape) window.close();
                     else if (event.key.code == sf::Keyboard::BackSpace && editingArraySize && !arraySizeText.empty()) arraySizeText.pop_back();
                     else if (event.key.code == sf::Keyboard::Return && editingArraySize) { updateArraySize(); editingArraySize = false; }
-                    else if (!editingArraySize && event.key.code >= sf::Keyboard::Num1 && event.key.code <= sf::Keyboard::Num5) return static_cast<int>(event.key.code - sf::Keyboard::Num1) + 1;
+                    else if (!editingArraySize && event.key.code >= sf::Keyboard::Num1 && event.key.code <= sf::Keyboard::Num9) return static_cast<int>(event.key.code - sf::Keyboard::Num1) + 1;
+                    else if (!editingArraySize && event.key.code == sf::Keyboard::Num0) return 10;
                 }
                 else if (event.type == sf::Event::TextEntered && editingArraySize && event.text.unicode >= '0' && event.text.unicode <= '9' && arraySizeText.size() < 3) arraySizeText += static_cast<char>(event.text.unicode);
                 else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
                 {
                     const float x = static_cast<float>(event.mouseButton.x);
                     const float y = static_cast<float>(event.mouseButton.y);
-                    for (int index = 0; index < 5; ++index)
+                    for (int index = 0; index < 10; ++index)
                     {
-                        const float buttonY = firstButtonY + static_cast<float>(index) * (buttonHeight + buttonGap);
-                        if (x >= 40.0F && x <= 460.0F && y >= buttonY && y <= buttonY + buttonHeight) { updateArraySize(); return index + 1; }
+                        const float buttonX = index < 5 ? 40.0F : 430.0F;
+                        const float buttonY = firstButtonY + static_cast<float>(index % 5) * (buttonHeight + buttonGap);
+                        if (x >= buttonX && x <= buttonX + 350.0F && y >= buttonY && y <= buttonY + buttonHeight) { updateArraySize(); return index + 1; }
                     }
-                    if (x >= 520.0F && x <= 960.0F && y >= 215.0F && y <= 275.0F) editingArraySize = true;
+                    if (x >= 860.0F && x <= 1320.0F && y >= 215.0F && y <= 275.0F) editingArraySize = true;
                     else if (x >= sliderStartX - 20.0F && x <= sliderEndX + 20.0F && y >= 340.0F && y <= 370.0F) { draggingArraySize = true; updateSlider(x, y); }
                     else if (x >= sliderStartX - 20.0F && x <= sliderEndX + 20.0F && y >= 440.0F && y <= 470.0F) { draggingDelay = true; updateSlider(x, y); }
                     else if (x >= sliderStartX - 20.0F && x <= sliderEndX + 20.0F && y >= 540.0F && y <= 570.0F) { draggingMinValue = true; updateSlider(x, y); }
                     else if (x >= sliderStartX - 20.0F && x <= sliderEndX + 20.0F && y >= 640.0F && y <= 670.0F) { draggingMaxValue = true; updateSlider(x, y); }
-                    else if (x >= 520.0F && x <= 740.0F && y >= 735.0F && y <= 790.0F) randomizeSize = !randomizeSize;
-                    else if (x >= 760.0F && x <= 960.0F && y >= 735.0F && y <= 790.0F) soundEnabled = !soundEnabled;
+                    else if (x >= 860.0F && x <= 1080.0F && y >= 735.0F && y <= 790.0F) randomizeSize = !randomizeSize;
+                    else if (x >= 1100.0F && x <= 1300.0F && y >= 735.0F && y <= 790.0F) soundEnabled = !soundEnabled;
                 }
                 else if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
                 {

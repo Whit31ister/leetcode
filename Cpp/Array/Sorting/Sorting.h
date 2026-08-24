@@ -26,4 +26,10 @@ namespace Sorting
         std::vector<int>& arr,
         Visualizer* viz = nullptr);
 
+    void shell_sort(std::vector<int>& arr, Visualizer* viz = nullptr);
+    void heap_sort(std::vector<int>& arr, Visualizer* viz = nullptr);
+    void counting_sort(std::vector<int>& arr, Visualizer* viz = nullptr);
+    void cocktail_sort(std::vector<int>& arr, Visualizer* viz = nullptr);
+    void comb_sort(std::vector<int>& arr, Visualizer* viz = nullptr);
+
 }

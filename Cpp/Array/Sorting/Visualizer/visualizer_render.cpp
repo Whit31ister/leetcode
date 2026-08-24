@@ -25,8 +25,9 @@ namespace Sorting
         const std::string& arraySizeText,
         const bool editingArraySize)
     {
-        static constexpr std::array<const char*, 5> algorithmNames = {
-            "1  Insertion Sort", "2  Selection Sort", "3  Bubble Sort", "4  Merge Sort", "5  Quick Sort"};
+        static constexpr std::array<const char*, 10> algorithmNames = {
+            "1  Insertion Sort", "2  Selection Sort", "3  Bubble Sort", "4  Merge Sort", "5  Quick Sort",
+            "6  Shell Sort", "7  Heap Sort", "8  Counting Sort", "9  Cocktail Sort", "0  Comb Sort"};
         window.clear(sf::Color(18, 18, 20));
 
         if (fontLoaded)
@@ -51,13 +52,13 @@ namespace Sorting
             sf::Text delayValue(std::to_string(delayMilliseconds) + " ms", font, 18);
 #endif
             title.setPosition({40.0F, 55.0F});
-            settings.setPosition({520.0F, 55.0F});
-            sizeLabel.setPosition({520.0F, 175.0F});
-            delayLabel.setPosition({520.0F, 390.0F});
-            minLabel.setPosition({520.0F, 490.0F});
-            maxLabel.setPosition({520.0F, 590.0F});
-            sizeValue.setPosition({540.0F, 230.0F});
-            delayValue.setPosition({1040.0F, 432.0F});
+            settings.setPosition({860.0F, 55.0F});
+            sizeLabel.setPosition({860.0F, 175.0F});
+            delayLabel.setPosition({860.0F, 390.0F});
+            minLabel.setPosition({860.0F, 490.0F});
+            maxLabel.setPosition({860.0F, 590.0F});
+            sizeValue.setPosition({880.0F, 230.0F});
+            delayValue.setPosition({1420.0F, 432.0F});
             for (sf::Text* label : {&title, &settings, &sizeLabel, &delayLabel, &minLabel, &maxLabel, &delayValue})
             {
                 label->setFillColor(sf::Color::White);
@@ -66,8 +67,8 @@ namespace Sorting
         }
 
         sf::RectangleShape input;
-        input.setPosition({520.0F, 215.0F});
-        input.setSize({420.0F, 60.0F});
+        input.setPosition({860.0F, 215.0F});
+        input.setSize({460.0F, 60.0F});
         input.setFillColor(sf::Color(35, 38, 44));
         input.setOutlineThickness(2.0F);
         input.setOutlineColor(editingArraySize ? sf::Color(100, 190, 255) : sf::Color(75, 80, 90));
@@ -84,9 +85,9 @@ namespace Sorting
             sf::Text arrayRange("10", font, 16);
             sf::Text arrayMaximum("200 elements", font, 16);
     #endif
-            sizeValue.setPosition({540.0F, 230.0F});
-            arrayRange.setPosition({592.0F, 372.0F});
-            arrayMaximum.setPosition({1000.0F, 372.0F});
+            sizeValue.setPosition({880.0F, 230.0F});
+            arrayRange.setPosition({972.0F, 372.0F});
+            arrayMaximum.setPosition({1380.0F, 372.0F});
             sizeValue.setFillColor(sf::Color::White);
             arrayRange.setFillColor(sf::Color(180, 185, 195));
             arrayMaximum.setFillColor(sf::Color(180, 185, 195));
@@ -98,14 +99,14 @@ namespace Sorting
         const auto drawSlider = [&](const float y, const float normalized)
         {
             sf::RectangleShape track;
-            track.setPosition({600.0F, y});
+            track.setPosition({980.0F, y});
             track.setSize({400.0F, 8.0F});
             track.setFillColor(sf::Color(75, 80, 90));
             window.draw(track);
 
             sf::CircleShape knob(10.0F);
             knob.setOrigin({10.0F, 10.0F});
-            knob.setPosition({600.0F + normalized * 400.0F, y + 4.0F});
+            knob.setPosition({980.0F + normalized * 400.0F, y + 4.0F});
             knob.setFillColor(sf::Color(100, 190, 255));
             window.draw(knob);
         };
@@ -123,8 +124,8 @@ namespace Sorting
             sf::Text delayMinimum("0 ms", font, 16);
             sf::Text delayMaximum("200 ms", font, 16);
     #endif
-            delayMinimum.setPosition({592.0F, 472.0F});
-            delayMaximum.setPosition({1000.0F, 472.0F});
+            delayMinimum.setPosition({972.0F, 472.0F});
+            delayMaximum.setPosition({1380.0F, 472.0F});
             delayMinimum.setFillColor(sf::Color(180, 185, 195));
             delayMaximum.setFillColor(sf::Color(180, 185, 195));
             window.draw(delayMinimum);
@@ -137,8 +138,8 @@ namespace Sorting
             sf::Text minValueText(std::to_string(minValue), font, 16);
             sf::Text maxValueText(std::to_string(maxValue), font, 16);
 #endif
-            minValueText.setPosition({1040.0F, 532.0F});
-            maxValueText.setPosition({1040.0F, 632.0F});
+            minValueText.setPosition({1420.0F, 532.0F});
+            maxValueText.setPosition({1420.0F, 632.0F});
             minValueText.setFillColor(sf::Color::White);
             maxValueText.setFillColor(sf::Color::White);
             window.draw(minValueText);
@@ -146,13 +147,13 @@ namespace Sorting
         }
 
         sf::RectangleShape randomButton;
-        randomButton.setPosition({520.0F, 735.0F});
+        randomButton.setPosition({860.0F, 735.0F});
         randomButton.setSize({220.0F, 55.0F});
         randomButton.setFillColor(randomizeSize ? sf::Color(48, 130, 90) : sf::Color(48, 92, 140));
         window.draw(randomButton);
 
         sf::RectangleShape soundButton;
-        soundButton.setPosition({760.0F, 735.0F});
+        soundButton.setPosition({1100.0F, 735.0F});
         soundButton.setSize({200.0F, 55.0F});
         soundButton.setFillColor(soundEnabled ? sf::Color(48, 130, 90) : sf::Color(90, 70, 70));
         window.draw(soundButton);
@@ -166,8 +167,8 @@ namespace Sorting
             sf::Text randomLabel(randomizeSize ? "Random size: ON" : "Random size: OFF", font, 17);
             sf::Text soundLabel(soundEnabled ? "Sound: ON" : "Sound: OFF", font, 17);
 #endif
-            randomLabel.setPosition({542.0F, 752.0F});
-            soundLabel.setPosition({795.0F, 752.0F});
+            randomLabel.setPosition({882.0F, 752.0F});
+            soundLabel.setPosition({1135.0F, 752.0F});
             randomLabel.setFillColor(sf::Color::White);
             soundLabel.setFillColor(sf::Color::White);
             window.draw(randomLabel);
@@ -177,8 +178,10 @@ namespace Sorting
         for (std::size_t i = 0; i < algorithmNames.size(); ++i)
         {
             sf::RectangleShape button;
-            button.setPosition({40.0F, 150.0F + static_cast<float>(i) * 80.0F});
-            button.setSize({420.0F, 64.0F});
+            const float buttonX = i < 5 ? 40.0F : 480.0F;
+            const float buttonY = 150.0F + static_cast<float>(i % 5) * 80.0F;
+            button.setPosition({buttonX, buttonY});
+            button.setSize({350.0F, 64.0F});
             button.setFillColor(sf::Color(48, 92, 140));
             button.setOutlineThickness(1.0F);
             button.setOutlineColor(sf::Color(100, 150, 200));
@@ -192,7 +195,7 @@ namespace Sorting
                 sf::Text label(algorithmNames[i], font, 24);
 #endif
                 label.setFillColor(sf::Color::White);
-                label.setPosition({64.0F, 167.0F + static_cast<float>(i) * 80.0F});
+                label.setPosition({buttonX + 24.0F, buttonY + 17.0F});
                 window.draw(label);
             }
         }

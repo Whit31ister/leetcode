@@ -28,7 +28,7 @@ namespace
 
 int main()
 {
-    Sorting::Visualizer viz(1400, 900, 90);
+    Sorting::Visualizer viz(1600, 1000, 90);
     std::size_t arraySize = 40;
     int delayMilliseconds = 40;
     int minValue = 10;
@@ -65,6 +65,21 @@ int main()
             break;
         case 5:
             Sorting::quick_sort(values, &viz);
+            break;
+        case 6:
+            Sorting::shell_sort(values, &viz);
+            break;
+        case 7:
+            Sorting::heap_sort(values, &viz);
+            break;
+        case 8:
+            Sorting::counting_sort(values, &viz);
+            break;
+        case 9:
+            Sorting::cocktail_sort(values, &viz);
+            break;
+        case 10:
+            Sorting::comb_sort(values, &viz);
             break;
         }
         
