@@ -38,7 +38,7 @@ int main()
     while (viz.isOpen())
     {
         viz.resetStatistics();
-        Sorting::merge_sort(values, &viz);
+        Sorting::insertion_sort(values, &viz);
 
         if (viz.consumeRandomizeRequest())
         {
