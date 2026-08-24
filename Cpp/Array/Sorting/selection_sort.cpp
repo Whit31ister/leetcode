@@ -1,6 +1,6 @@
 #include "Sorting.h"
 
-#include "visualizer.h"
+#include "Visualizer/visualizer.h"
 
 #include <utility>
 

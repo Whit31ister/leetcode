@@ -1,6 +1,5 @@
 #include "Sorting.h"
-#include "visualizer.h"
-
+#include "Visualizer/visualizer.h"
 #include <algorithm>
 #include <numeric>
 #include <random>
@@ -29,25 +28,61 @@ namespace
 
 int main()
 {
-    std::vector<int> originalValues = generateRandomVector(40, 10, 189);
-    std::vector<int> values = originalValues;
-
-    Sorting::Visualizer viz(1200, 800, 90);
-    viz.setDelay(40);
-
-    while (viz.isOpen())
+    Sorting::Visualizer viz(1400, 900, 90);
+    std::size_t arraySize = 40;
+    int delayMilliseconds = 40;
+    int minValue = 10;
+    int maxValue = 189;
+    bool randomizeSize = false;
+    bool soundEnabled = true;
+    int chooseSort = viz.selectAlgorithm(arraySize, delayMilliseconds, minValue, maxValue, randomizeSize, soundEnabled);
+    std::mt19937 sizeEngine(std::random_device{}());
+    std::uniform_int_distribution<std::size_t> sizeDistribution(10, 200);
+    while (viz.isOpen() && chooseSort != 0)
     {
+        viz.setDelay(delayMilliseconds);
+        viz.setSoundEnabled(soundEnabled);
+        const std::size_t generatedSize = randomizeSize
+            ? sizeDistribution(sizeEngine)
+            : arraySize;
+        std::vector<int> originalValues = generateRandomVector(generatedSize, minValue, maxValue);
+        std::vector<int> values = originalValues;
         viz.resetStatistics();
-        Sorting::insertion_sort(values, &viz);
-
+        
+        switch (chooseSort)
+        {
+        case 1:
+            Sorting::insertion_sort(values, &viz);
+            break;
+        case 2:
+            Sorting::selection_sort(values, &viz);
+            break;
+        case 3:
+            Sorting::bubble_sort(values, &viz);
+            break;
+        case 4:
+            Sorting::merge_sort(values, &viz);
+            break;
+        case 5:
+            Sorting::quick_sort(values, &viz);
+            break;
+        }
+        
         if (viz.consumeRandomizeRequest())
         {
-            originalValues = generateRandomVector(180, 10, 189);
+            const std::size_t generatedSize = randomizeSize
+                ? sizeDistribution(sizeEngine)
+                : arraySize;
+            originalValues = generateRandomVector(generatedSize, minValue, maxValue);
             values = originalValues;
         }
         else if (viz.consumeRestartRequest())
         {
             values = originalValues;
+        }
+        else if (viz.consumeBackRequest())
+        {
+            chooseSort = viz.selectAlgorithm(arraySize, delayMilliseconds, minValue, maxValue, randomizeSize, soundEnabled);
         }
         else
         {
