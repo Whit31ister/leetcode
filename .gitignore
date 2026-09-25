@@ -1,3 +1,7 @@
 /.github
 .venv 
 /.vscode
+
+# Local RTK/Codex instructions
+/AGENTS.md
+/RTK.md
