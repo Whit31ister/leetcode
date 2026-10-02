@@ -5,3 +5,5 @@
 # Local RTK/Codex instructions
 /AGENTS.md
 /RTK.md
+/.codex/hooks.json
+/.codex/hooks/rtk_rewrite.py
